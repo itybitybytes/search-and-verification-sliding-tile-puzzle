@@ -1,0 +1,116 @@
+How to Deploy Locally
+
+This project is a FastAPI web app for the sliding-tile puzzle solver. To run it locally from a terminal, use the following steps.
+
+1) Open a terminal in the project folder
+
+Example project location (adjust to where you downloaded the repository):
+
+C:\Projects\search-and-verification-sliding-tile-puzzle\FastAPI 3x3 Puzzle
+
+In PowerShell or Command Prompt, change to the project directory:
+
+cd "C:\Projects\search-and-verification-sliding-tile-puzzle\FastAPI 3x3 Puzzle"
+
+If you are already in the correct folder, you can skip this step.
+
+2) Create and activate a virtual environment (recommended)
+
+PowerShell:
+
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+
+Command Prompt:
+
+py -m venv .venv
+.venv\Scripts\activate.bat
+
+3) Install dependencies
+
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+
+4) Start the web app
+
+If port 8000 is free, use:
+
+python -m uvicorn web.app:app --host 127.0.0.1 --port 8000
+
+If Windows reports a port conflict, use a different port such as 8001 or 8010:
+
+python -m uvicorn web.app:app --host 127.0.0.1 --port 8001
+
+This starts the FastAPI app locally on whichever port you choose. For the
+8001 example above, open:
+
+http://127.0.0.1:8001/
+
+5) Use the app in the browser
+
+Open this URL in your browser:
+
+http://127.0.0.1:8001/
+
+The app includes:
+- the main puzzle interface
+- the /health endpoint
+- the /api/config endpoint
+- the /api/new-puzzle endpoint
+- the /api/solver-demo endpoint
+- the /api/completions endpoint
+
+6) Optional: check that the app is running
+
+In a second terminal window, run:
+
+curl http://127.0.0.1:8001/health
+
+Or open the URL in a browser:
+
+http://127.0.0.1:8001/health
+
+Expected response:
+
+{"status": "ok"}
+
+7) Stop the app
+
+Press:
+
+Ctrl + C
+
+in the terminal where uvicorn is running.
+
+8) Notes
+
+- The app serves static files from the web/static folder.
+- Local SQLite data defaults to the project data folder unless the environment variable PUZZLE_COMPLETIONS_DB is set.
+- If Windows says the port is already in use, the fix is to free the port or choose another port.
+- This worked successfully on Windows:
+
+$port = 8001; $p = (Get-NetTCPConnection -LocalPort $port -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique); if ($p) { Stop-Process -Id $p -Force; Write-Host "Stopped PID $p on port $port" } else { Write-Host "Port $port is free" }
+
+Then run:
+
+python -m uvicorn web.app:app --host 127.0.0.1 --port 8001
+
+Then open:
+
+http://127.0.0.1:8001/
+
+9) Example full local deployment flow
+
+cd "C:\Projects\search-and-verification-sliding-tile-puzzle\FastAPI 3x3 Puzzle"
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+$port = 8001; $p = (Get-NetTCPConnection -LocalPort $port -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique); if ($p) { Stop-Process -Id $p -Force; Write-Host "Stopped PID $p on port $port" } else { Write-Host "Port $port is free" }
+python -m uvicorn web.app:app --host 127.0.0.1 --port 8001
+
+Then open:
+
+http://127.0.0.1:8001/
+
+This is the working local deployment setup for Windows when the default port is already occupied.

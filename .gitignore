@@ -1,0 +1,19 @@
+# Local files can contain usernames, personal paths, or completion history.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.vscode/
+.venv/
+venv/
+.env
+.env.*
+completion_records.json
+*.sqlite3
+*.sqlite3-*
+*.db
+*.log
+*.zip
+.DS_Store
+Thumbs.db

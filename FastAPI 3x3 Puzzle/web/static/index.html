@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sliding Tile Puzzle</title>
+  <link rel="stylesheet" href="/static/css/styles.css?v=10">
+</head>
+<body>
+  <div id="confetti-layer" class="confetti-layer" aria-hidden="true"></div>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Puzzle facts and player">
+      <section class="brand-block">
+        <p class="eyebrow">Sliding Tile</p>
+        <h1>Puzzle Solver</h1>
+      </section>
+
+      <section class="username-panel" aria-labelledby="username-title">
+        <h2 id="username-title">Player</h2>
+        <label for="username-input">Username</label>
+        <div class="username-row">
+          <input id="username-input" name="username" type="text" autocomplete="nickname" maxlength="32" placeholder="Enter username">
+          <button id="save-username" type="button">Save</button>
+        </div>
+        <p id="username-display" class="username-display">No username set</p>
+      </section>
+
+      <section class="fact-panel" aria-labelledby="fact-title">
+        <h2 id="fact-title">DID YOU KNOW...</h2>
+        <p id="fact-text">Loading puzzle fact...</p>
+        <div class="fact-countdown" aria-hidden="true">
+          <span id="fact-countdown-bar"></span>
+        </div>
+      </section>
+    </aside>
+
+    <main class="main-stage">
+      <section class="game-header" aria-label="Game controls">
+        <div>
+          <p class="eyebrow">Game Mode</p>
+          <h2>Manual Play</h2>
+        </div>
+        <div class="metrics" aria-label="Game metrics">
+          <div class="metric">
+            <span>MOVES</span>
+            <strong id="moves-count">0</strong>
+          </div>
+          <div class="metric">
+            <span>TIME</span>
+            <strong id="time-count">0s</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="difficulty-panel" aria-label="Difficulty selection">
+        <button class="difficulty-button active" type="button" data-difficulty="easy">
+          <span>EASY</span>
+          <strong>3x3</strong>
+        </button>
+        <button class="difficulty-button" type="button" data-difficulty="medium">
+          <span>MEDIUM</span>
+          <strong>4x4</strong>
+        </button>
+        <button class="difficulty-button" type="button" data-difficulty="hard">
+          <span>HARD</span>
+          <strong>5x5</strong>
+        </button>
+        <button id="new-puzzle" class="new-puzzle-button" type="button">New Puzzle</button>
+      </section>
+
+      <section class="board-wrap" aria-label="Sliding puzzle board">
+        <div id="puzzle-board" class="puzzle-board" role="grid" aria-label="Puzzle board"></div>
+        <div id="success-message" class="success-message" role="status" aria-live="polite" hidden></div>
+      </section>
+
+      <section class="solver-panel" aria-labelledby="solver-title">
+        <div class="solver-intro">
+          <p class="eyebrow">Assignment Solver Mode</p>
+          <h2 id="solver-title">3x3 Solver Demonstration</h2>
+          <p class="solver-note">
+            Manual game supports 3x3, 4x4, and 5x5. Required search verification focuses on fixed reasonable 3x3 states.
+          </p>
+          <p class="solver-note">Move names use the documented blank-movement semantics: UP, DOWN, LEFT, RIGHT.</p>
+        </div>
+
+        <div class="solver-demo-grid">
+          <section class="solver-start" aria-labelledby="solver-start-title">
+            <h3 id="solver-start-title">Starting 3x3 Board</h3>
+            <div id="solver-start-board" class="mini-board" aria-label="Solver starting board"></div>
+          </section>
+
+          <section class="solver-comparison" aria-labelledby="solver-comparison-title">
+            <h3 id="solver-comparison-title">Algorithm Comparison</h3>
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th scope="col">Algorithm</th>
+                  <th scope="col">Solution Length</th>
+                  <th scope="col">Expanded States</th>
+                </tr>
+              </thead>
+              <tbody id="solver-comparison-body"></tbody>
+            </table>
+          </section>
+
+          <section class="solver-playback" aria-labelledby="solver-playback-title">
+            <h3 id="solver-playback-title">Move Inspection</h3>
+            <div id="solver-playback-board" class="mini-board" aria-label="Solver playback board"></div>
+            <p id="solver-step-label" class="solver-step-label">Step 0</p>
+            <p id="solver-playback-move" class="solver-playback-move">Returned move sequence loads here.</p>
+            <div class="playback-controls">
+              <button id="solver-prev-step" type="button">Previous</button>
+              <button id="solver-next-step" type="button">Next</button>
+              <button id="solver-reset-step" type="button">Reset</button>
+            </div>
+          </section>
+
+          <section class="solver-algorithm-list" aria-label="Algorithm details">
+            <div id="solver-results" class="solver-results" aria-live="polite"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/js/app.js?v=15"></script>
+</body>
+</html>

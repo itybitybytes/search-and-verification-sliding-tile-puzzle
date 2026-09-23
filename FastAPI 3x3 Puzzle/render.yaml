@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: sliding-tile-puzzle
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn web.app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PUZZLE_COMPLETIONS_DB
+        value: /var/data/completions.sqlite3
+    disk:
+      name: puzzle-completions
+      mountPath: /var/data
+      sizeGB: 1

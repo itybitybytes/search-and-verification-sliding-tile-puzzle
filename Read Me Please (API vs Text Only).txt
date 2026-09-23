@@ -1,0 +1,13 @@
+To orient you to my project please read the following!
+
+3x3 Puzzle Text Solver folder is an unfinished demo version--please ignore that as that will not be helpful nor apply to this assignment.
+
+FastAPI 3x3 Puzzle folder was an attempt at making this program more than a python text based service--and while it meets the constraints of the project--it does involve a lot of additional aspects that are not captured. Please review this for fun if you'd like, but this is simply myself messing around and trying to elevate the project.
+
+#text_only_pyhton_solver# This is the folder I would look at for project grading--all required components are within this folder, including a how to deploy read me, which just simplifies the original read me into deployment specific instructions!
+Please read in this folder the REFLECTION.txt and the CONCEPT AND VERIFICATION.txt for needed responses on those two portions of this assignment.
+
+For both API and text--check the hot to deploy files to quickly run through the games if you'd like.
+
+Thank you!
+

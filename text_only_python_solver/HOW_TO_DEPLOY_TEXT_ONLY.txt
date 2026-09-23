@@ -1,0 +1,208 @@
+How to Deploy and Run the Text-Only Python Solver
+
+This folder is a standalone command-prompt / terminal version of the
+sliding-tile puzzle project.
+
+It is NOT a web application.
+
+NO FastAPI
+NO Flask
+NO Django
+NO Uvicorn
+NO HTML/CSS/JavaScript
+NO SQL database service
+NO Render web service is required
+
+The program runs locally with Python and normal terminal commands.
+
+============================================================
+1) Open Command Prompt
+============================================================
+
+On Windows:
+
+1. Press Windows key.
+2. Type:
+
+cmd
+
+3. Press Enter.
+
+============================================================
+2) Change into the text-only solver folder
+============================================================
+
+Use this command, adjusting the path only if you saved the project somewhere
+else:
+
+cd "C:\Projects\search-and-verification-sliding-tile-puzzle\text_only_python_solver"
+
+If you downloaded the project from GitHub, first change into the downloaded
+repository folder, then enter:
+
+cd text_only_python_solver
+
+============================================================
+3) Confirm Python works
+============================================================
+
+Run:
+
+python --version
+
+If that does not work on your machine, try:
+
+py --version
+
+Use the command that works on your computer in the examples below.
+
+Recommended Python version: Python 3.10 or newer.
+
+============================================================
+4) Run the solver demonstration artifact
+============================================================
+
+This required assignment file demonstrates the Python solver entry point:
+
+python 02_python_solver.py
+
+It shows a sample 3x3 puzzle and runs:
+
+- BFS
+- A* with misplaced tiles
+- A* with Manhattan distance
+
+============================================================
+5) Run the required verification script
+============================================================
+
+Run:
+
+python 03_verify_solver.py
+
+This verifies the required fixed 3x3 cases:
+
+- solved puzzle
+- one move from goal
+- several moves from goal
+- invalid puzzle
+- unsolvable puzzle
+- BFS vs A* comparison
+
+It also checks that solution lengths, move sequences, expanded-state counts,
+and heuristic behavior are reported correctly.
+
+============================================================
+6) Run the playable terminal game
+============================================================
+
+Run:
+
+python 06_cli_game.py
+
+The menu provides:
+
+1. PLAY PUZZLE
+2. SOLVER DEMONSTRATION
+3. VIEW MY COMPLETION RECORDS
+4. HELP
+5. QUIT
+
+Manual play supports exactly:
+
+Easy   = 3x3
+Medium = 4x4
+Hard   = 5x5
+
+Use these commands while playing:
+
+UP
+DOWN
+LEFT
+RIGHT
+HELP
+NEW
+QUIT
+
+Important: UP, DOWN, LEFT, and RIGHT describe movement of the blank space.
+The blank is shown as an axe symbol when Unicode output is available.
+
+============================================================
+7) Optional ASCII-only mode
+============================================================
+
+If the terminal does not display the axe or celebration symbols correctly,
+set ASCII mode before starting the game.
+
+Command Prompt:
+
+set PUZZLE_ASCII=1
+python 06_cli_game.py
+
+PowerShell:
+
+$env:PUZZLE_ASCII="1"
+python 06_cli_game.py
+
+The blank will be displayed with an ASCII-safe marker instead of Unicode.
+
+============================================================
+8) Run the automated test suite
+============================================================
+
+Run:
+
+python -m unittest discover -v
+
+This runs the text-only package tests for:
+
+- model behavior
+- validation
+- solvability
+- BFS
+- A*
+- heuristics
+- generated puzzles
+- local JSON records
+- facts
+- selected CLI helpers
+
+============================================================
+9) Completion records
+============================================================
+
+The terminal game saves local completion history in:
+
+completion_records.json
+
+This file is created when a player completes a puzzle. It stores local JSON
+records by username. It is not a cloud database and is not sent to a server.
+
+To view records from inside the game:
+
+python 06_cli_game.py
+
+Then choose:
+
+3. VIEW MY COMPLETION RECORDS
+
+============================================================
+10) Sharing or submitting the text-only project
+============================================================
+
+To share this version, provide the entire text_only_python_solver folder.
+
+The required assignment artifacts in this folder are:
+
+01_LLM_SPECIFICATION.md
+02_python_solver.py
+03_verify_solver.py
+04_TEST_EVIDENCE.md
+05_REQUIREMENTS_TRACEABILITY.md
+
+The playable terminal game is:
+
+06_cli_game.py
+
+There is no web deployment step for this text-only package. A user only needs
+Python and the command prompt commands shown above.

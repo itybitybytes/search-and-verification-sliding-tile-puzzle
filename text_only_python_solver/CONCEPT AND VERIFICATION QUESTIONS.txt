@@ -1,0 +1,57 @@
+Specification
+
+What details did you need to decide before asking the LLM for code?
+I needed to decide how the board would be represented (i.e. Immutable Flat Tuple), blank representation (the little axe symbol), A* tie-breaking, text boards, invalid moves responses, completion responses, and other features I included like username and difficulties.
+
+Which part of your original specification was most ambiguous?
+I think the most ambiguous portion I had was tie-breaking because I did not conceptually understand what tie-breaking even was in this context. This is where I had ChatGPT walk me though possible solutions and what it would look like.
+
+BFS
+
+Why does BFS find a minimum-move solution for this puzzle?
+BFS helps with searching in regards to move counting. Each move costs 1, and BFS helps at finding the most minimal cost in that regard.
+
+How did you verify that BFS was not revisiting the same states repeatedly?
+using my pytests I was able to, with ChatGPTs help, eliminate repeated states being labeled as visited. When it has been labeled as visited it should not be explored again.
+
+A*
+
+What does g(n) represent in your A* implementation?
+This is the number of moves made so far.
+
+What does h(n) represent in your A* implementation?
+This is the distance to the goal (completion). This is where misplaced and Manhattan was used due to distance from goal state.
+
+How did you verify that A* returned a valid move sequence, not just a plausible-looking one?
+My test applied the moves to the starting board, not simply going through a pattern notionally. This ensured that the sequence was actually reachable and not a random pattern or likelihood.
+
+Heuristics
+
+Which heuristic expanded fewer states: misplaced tiles or Manhattan distance?
+Misplaced had 8 expanded states, while Manhattan had 6. So Manhattan had less.
+
+Why do you think that happened?
+Misplaced only tells you if a tile is wrong--this doesn't capture how wrong--meaning more states. Manhattan tells you how far, or how wrong, which eliminates some of these states as they are not needed.
+
+Verification
+
+How did you test an unsolvable board?
+With ChatGPTs guidance, I swapped 7 with 8--this created the unsolvable board. Program then returned unsolvable as desired.
+
+Validation And Assurance
+
+What claim can you make about your solver's reliability?
+I can only claim my solver's reliability in regards to the 3x3 puzzle as that is what I had specified it for. I can claim that I created tests to confirm solved boards, one-move boards, multi-move boards, invalid inputs, and unsolvable inputs. This is not all encompassing, and I can't/won't claim that. I would claim that this is a functional starting position for reliability however.
+
+What evidence supports that claim?
+My test were aimed at explicitly replaying move sets to confirm that they reach their goals on the board and not in some theoretical black box.
+
+What boards or conditions are outside your evidence?
+I did not test 4x4 or 5x5 boards, I would claim these as outside of my evidence. Additionally, there are likely unexplored states--due to my lack of knowledge on puzzle sliders--that I may not be accounting for.
+
+What residual risk remains in your implementation?
+The largest risk that would be 3x3 states I had no knowledge of and did not account for.
+
+What additional test would most increase your confidence?
+I could throw in a test that checks 3x3 boards in large batches, maybe even hundreds at a time, to check for starting states that I had not accounted for. I could also incorporate test that go through every single possible input user may have at every user input point to see where the program fails.
+
